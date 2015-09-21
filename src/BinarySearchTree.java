@@ -67,17 +67,17 @@ public class BinarySearchTree extends Tree {
 	public void delete(int data){
 		if(root != null){
 			if(root.getData() == data){
-				Tree tree = new Tree(0);
+				Tree tree = new Tree(Integer.MAX_VALUE);
 				tree.setLeft(root);
 				delete(data,tree);
-				root = root.getLeft();
+				root = tree.getLeft();
 				
 			}else {
 				delete(data,root);
 			}
 		}
 	}	
-	public Tree delete(int data, Tree tree  ){
+	public Tree delete(int data, Tree tree){
 		if(data < tree.getData()){
 			if(!isEmpty(tree.getLeft())){
 				tree.setLeft(delete(data,tree.getLeft()));	
@@ -146,6 +146,7 @@ public class BinarySearchTree extends Tree {
 //----------------------------------- Method Support---------------------------------------------------------------	
 	public int minValue(Tree tree) {
 		if (isEmpty(tree.getLeft())) {
+			
 			return tree.getData();
 		}
 		return minValue(tree.getLeft());
